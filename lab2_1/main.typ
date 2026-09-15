@@ -113,6 +113,18 @@
   [GigabitEthernet0/0/2], [10.0.13.3/24],
 )
 
+На R2 и R3 адреса из таблицы настроены аналогично.
+
+```
+<R1>system-view
+[R1]interface GigabitEthernet0/0/0
+[R1-GigabitEthernet0/0/0]ip address 10.0.12.1 24
+[R1-GigabitEthernet0/0/0]quit
+[R1]interface GigabitEthernet0/0/2
+[R1-GigabitEthernet0/0/2]ip address 10.0.13.1 24
+[R1-GigabitEthernet0/0/2]quit
+```
+
 #pagebreak()
 
 === Проверка связи с помощью `ping`
@@ -175,7 +187,6 @@
 
 == Создание loopback-интерфейсов
 
-// TODO: FIX
 #table(
   columns: (auto, 1fr, auto),
   stroke: 0.5pt,
@@ -188,6 +199,13 @@
   [R2], [LoopBack0], [10.0.1.2/32],
   [R3], [LoopBack0], [10.0.1.3/32],
 )
+
+На R2 и R3 loopback-интерфейсы из таблицы настроены аналогично.
+
+```
+[R1]interface LoopBack0
+[R1-LoopBack0]ip address 10.0.1.1 32
+```
 
 === Таблица маршрутизации R1
 #block[
@@ -218,7 +236,7 @@
 === Проверка связи между loopback-интерфейсами
 
 ```
-[R1]ping 10.0.1.2
+[R1]ping -a 10.0.1.1 10.0.1.2
   PING 10.0.1.2: 56  data bytes, press CTRL_C to break
     Request time out
     Request time out
@@ -343,11 +361,13 @@
   ```
 ]
 
-=== Отключение GigabitEthernet0/0/0 на маршрутизаторе R1
+=== Отключение GigabitEthernet0/0/0 на маршрутизаторах R1 и R2
 
 ```
 [R1]interface GigabitEthernet 0/0/0
 [R1-GigabitEthernet0/0/0]shutdown
+[R2]interface GigabitEthernet 0/0/0
+[R2-GigabitEthernet0/0/0]shutdown
 ```
 
 === Таблица маршрутизации R1 (после выключения g0/0/0)
@@ -394,6 +414,9 @@
 [R1]interface GigabitEthernet 0/0/0
 [R1-GigabitEthernet0/0/0]undo shutdown
 [R1-GigabitEthernet0/0/0]quit
+[R2]interface GigabitEthernet 0/0/0
+[R2-GigabitEthernet0/0/0]undo shutdown
+[R2-GigabitEthernet0/0/0]quit
 [R1]undo ip route-static 10.0.1.2 32 10.0.12.2
 [R1]undo ip route-static 10.0.1.2 32 10.0.13.3 preference 100
 ```
