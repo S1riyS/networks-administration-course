@@ -86,7 +86,7 @@
 #pagebreak()
 
 = Топология
-#image("topology.png")
+#image("images/topology.png")
 
 = Конфигурация
 
@@ -106,11 +106,11 @@
   fill: (_, row) => if row == 0 { luma(230) } else { none },
   [*Маршрутизатор*], [*Интерфейс*], [*IP-адрес / маска*],
   table.cell(rowspan: 2)[R1], [GigabitEthernet0/0/0], [10.0.12.1/24],
-                               [GigabitEthernet0/0/2], [10.0.13.1/24],
+  [GigabitEthernet0/0/2], [10.0.13.1/24],
   table.cell(rowspan: 2)[R2], [GigabitEthernet0/0/0], [10.0.12.2/24],
-                               [GigabitEthernet0/0/1], [10.0.23.2/24],
+  [GigabitEthernet0/0/1], [10.0.23.2/24],
   table.cell(rowspan: 2)[R3], [GigabitEthernet0/0/1], [10.0.23.3/24],
-                               [GigabitEthernet0/0/2], [10.0.13.3/24],
+  [GigabitEthernet0/0/2], [10.0.13.3/24],
 )
 
 #pagebreak()
@@ -156,10 +156,10 @@
   Route Flags: R - relay, D - download to fib
   ------------------------------------------------------------------------------
   Routing Tables: Public
-           Destinations : 10       Routes : 10       
-  
+           Destinations : 10       Routes : 10
+
   Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
-  
+
         10.0.12.0/24  Direct  0    0           D   10.0.12.1       GigabitEthernet0/0/0
         10.0.12.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
       10.0.12.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
@@ -192,27 +192,27 @@
 === Таблица маршрутизации R1
 #block[
   #show raw: set text(size: 9pt)
-```
-[R1]display ip routing-table
-Route Flags: R - relay, D - download to fib
-------------------------------------------------------------------------------
-Routing Tables: Public
-         Destinations : 11       Routes : 11       
+  ```
+  [R1]display ip routing-table
+  Route Flags: R - relay, D - download to fib
+  ------------------------------------------------------------------------------
+  Routing Tables: Public
+           Destinations : 11       Routes : 11
 
-Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+  Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
 
-       10.0.1.1/32  Direct  0    0           D   127.0.0.1       LoopBack0
-      10.0.12.0/24  Direct  0    0           D   10.0.12.1       GigabitEthernet0/0/0
-      10.0.12.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
-    10.0.12.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
-      10.0.13.0/24  Direct  0    0           D   10.0.13.1       GigabitEthernet0/0/2
-      10.0.13.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/2
-    10.0.13.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/2
-      127.0.0.0/8   Direct  0    0           D   127.0.0.1       InLoopBack0
-      127.0.0.1/32  Direct  0    0           D   127.0.0.1       InLoopBack0
-127.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
-255.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
-```
+         10.0.1.1/32  Direct  0    0           D   127.0.0.1       LoopBack0
+        10.0.12.0/24  Direct  0    0           D   10.0.12.1       GigabitEthernet0/0/0
+        10.0.12.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
+      10.0.12.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
+        10.0.13.0/24  Direct  0    0           D   10.0.13.1       GigabitEthernet0/0/2
+        10.0.13.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/2
+      10.0.13.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/2
+        127.0.0.0/8   Direct  0    0           D   127.0.0.1       InLoopBack0
+        127.0.0.1/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+  127.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+  255.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+  ```
 ]
 
 === Проверка связи между loopback-интерфейсами
@@ -251,28 +251,28 @@ Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
 #block[
   #show raw: set text(size: 9pt)
   ```
-[R1]display ip routing-table
-Route Flags: R - relay, D - download to fib
-------------------------------------------------------------------------------
-Routing Tables: Public
-         Destinations : 13       Routes : 13       
+  [R1]display ip routing-table
+  Route Flags: R - relay, D - download to fib
+  ------------------------------------------------------------------------------
+  Routing Tables: Public
+           Destinations : 13       Routes : 13
 
-Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+  Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
 
-       10.0.1.1/32  Direct  0    0           D   127.0.0.1       LoopBack0
-       10.0.1.2/32  Static  60   0          RD   10.0.12.2       GigabitEthernet0/0/0
-       10.0.1.3/32  Static  60   0          RD   10.0.13.3       GigabitEthernet0/0/2
-      10.0.12.0/24  Direct  0    0           D   10.0.12.1       GigabitEthernet0/0/0
-      10.0.12.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
-    10.0.12.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
-      10.0.13.0/24  Direct  0    0           D   10.0.13.1       GigabitEthernet0/0/2
-      10.0.13.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/2
-    10.0.13.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/2
-      127.0.0.0/8   Direct  0    0           D   127.0.0.1       InLoopBack0
-      127.0.0.1/32  Direct  0    0           D   127.0.0.1       InLoopBack0
-127.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
-255.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
-```
+         10.0.1.1/32  Direct  0    0           D   127.0.0.1       LoopBack0
+         10.0.1.2/32  Static  60   0          RD   10.0.12.2       GigabitEthernet0/0/0
+         10.0.1.3/32  Static  60   0          RD   10.0.13.3       GigabitEthernet0/0/2
+        10.0.12.0/24  Direct  0    0           D   10.0.12.1       GigabitEthernet0/0/0
+        10.0.12.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
+      10.0.12.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
+        10.0.13.0/24  Direct  0    0           D   10.0.13.1       GigabitEthernet0/0/2
+        10.0.13.1/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/2
+      10.0.13.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/2
+        127.0.0.0/8   Direct  0    0           D   127.0.0.1       InLoopBack0
+        127.0.0.1/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+  127.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+  255.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+  ```
 ]
 
 === Проверка связи между loopback-интерфейсами
@@ -323,10 +323,10 @@ Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
   Route Flags: R - relay, D - download to fib
   ------------------------------------------------------------------------------
   Routing Tables: Public
-           Destinations : 13       Routes : 13       
-  
+           Destinations : 13       Routes : 13
+
   Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
-  
+
          10.0.1.1/32  Direct  0    0           D   127.0.0.1       LoopBack0
          10.0.1.2/32  Static  60   0          RD   10.0.12.2       GigabitEthernet0/0/0
          10.0.1.3/32  Static  60   0          RD   10.0.13.3       GigabitEthernet0/0/2
@@ -359,10 +359,10 @@ Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
   Route Flags: R - relay, D - download to fib
   ------------------------------------------------------------------------------
   Routing Tables: Public
-           Destinations : 10       Routes : 10       
-  
+           Destinations : 10       Routes : 10
+
   Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
-  
+
          10.0.1.1/32  Direct  0    0           D   127.0.0.1       LoopBack0
          10.0.1.2/32  Static  100  0          RD   10.0.13.3       GigabitEthernet0/0/2
          10.0.1.3/32  Static  60   0          RD   10.0.13.3       GigabitEthernet0/0/2
@@ -382,10 +382,10 @@ Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
 [R1]tracert -a 10.0.1.1 10.0.1.2
 
  traceroute to  10.0.1.2(10.0.1.2), max hops: 30 ,packet length: 40,press CTRL_C
- to break 
+ to break
 
- 1 10.0.13.3 30 ms  30 ms  10 ms 
- 2 10.0.23.2 40 ms  20 ms  20 ms 
+ 1 10.0.13.3 30 ms  30 ms  10 ms
+ 2 10.0.23.2 40 ms  20 ms  20 ms
 ```
 
 == Настройка маршрутов по умолчанию для установления связи между интерфейсом LoopBack0 маршрутизатора R1 и LoopBack0 R2
@@ -407,10 +407,10 @@ Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
   Route Flags: R - relay, D - download to fib
   ------------------------------------------------------------------------------
   Routing Tables: Public
-           Destinations : 12       Routes : 12       
-  
+           Destinations : 12       Routes : 12
+
   Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
-  
+
          10.0.1.1/32  Direct  0    0           D   127.0.0.1       LoopBack0
          10.0.1.3/32  Static  60   0          RD   10.0.13.3       GigabitEthernet0/0/2
         10.0.12.0/24  Direct  0    0           D   10.0.12.1       GigabitEthernet0/0/0
@@ -441,10 +441,10 @@ Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
   Route Flags: R - relay, D - download to fib
   ------------------------------------------------------------------------------
   Routing Tables: Public
-           Destinations : 13       Routes : 13       
-  
+           Destinations : 13       Routes : 13
+
   Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
-  
+
           0.0.0.0/0   Static  60   0          RD   10.0.12.2       GigabitEthernet0/0/0
          10.0.1.1/32  Direct  0    0           D   127.0.0.1       LoopBack0
          10.0.1.3/32  Static  60   0          RD   10.0.13.3       GigabitEthernet0/0/2
