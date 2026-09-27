@@ -1,0 +1,15 @@
+ftp 10.0.12.2
+
+# На запрос User ввести: ftp-client
+# На запрос пароля ввести: Huawei@123
+
+ascii
+dir
+get test2.cfg
+delete test2.cfg
+
+# На вопрос Continue? ответить: y
+
+put test1.cfg
+dir
+bye
