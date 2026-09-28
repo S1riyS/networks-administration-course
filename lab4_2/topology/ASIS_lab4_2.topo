@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UNICODE" ?>
+<topo version="1.3.00.100">
+    <devices>
+        <dev id="33E99032-23AC-456c-B58A-C9204933D761" name="R1" poe="0" model="AR2220" settings="" system_mac="00-E0-FC-FC-27-89" com_port="2000" bootmode="0" cx="307.000000" cy="215.000000" edit_left="334" edit_top="269">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="GE" count="1" />
+                <interface sztype="Ethernet" interfacename="GE" count="2" />
+            </slot>
+        </dev>
+        <dev id="155BCF1E-D1B9-478e-B025-AE468E39E3C1" name="R2" poe="0" model="AR2220" settings="" system_mac="00-E0-FC-1E-2A-6A" com_port="2001" bootmode="0" cx="549.000000" cy="214.000000" edit_left="576" edit_top="268">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="GE" count="1" />
+                <interface sztype="Ethernet" interfacename="GE" count="2" />
+            </slot>
+        </dev>
+    </devices>
+    <lines>
+        <line srcDeviceID="33E99032-23AC-456c-B58A-C9204933D761" destDeviceID="155BCF1E-D1B9-478e-B025-AE468E39E3C1">
+            <interfacePair lineName="Copper" srcIndex="2" srcBoundRectIsMoved="1" srcBoundRect_X="377.183411" srcBoundRect_Y="241.821564" srcOffset_X="-9.000000" srcOffset_Y="11.000000" tarIndex="2" tarBoundRectIsMoved="1" tarBoundRect_X="532.816589" tarBoundRect_Y="241.178436" tarOffset_X="-39.000000" tarOffset_Y="11.000000" />
+        </line>
+    </lines>
+    <shapes />
+    <txttips>
+        <txttip left="405" top="196" right="500" bottom="213" content="10.0.12.0/24" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
+        <txttip left="361" top="267" right="433" bottom="284" content="10.0.12.1" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
+        <txttip left="474" top="267" right="546" bottom="284" content="10.0.12.2" fontname="Consolas" fontstyle="0" editsize="100" txtcolor="-16777216" txtbkcolor="-7278960" charset="1" />
+    </txttips>
+</topo>
